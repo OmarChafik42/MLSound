@@ -731,10 +731,6 @@ INPUT DelayComp.png
 INPUT ./DelayComp.png
 INPUT ./DelayComp.png
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
-INPUT ./ml_project_template.bbl
-INPUT ml_project_template.bbl
-INPUT ./ml_project_template.bbl
-INPUT ml_project_template.bbl
 INPUT ml_project_template.aux
 INPUT ./ml_project_template.out
 INPUT ./ml_project_template.out

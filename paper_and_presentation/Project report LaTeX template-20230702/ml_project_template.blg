@@ -3,10 +3,11 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: ml_project_template.aux
 The style file: apalike.bst
 Database file #1: ./ml_project_bibliography.bib
+Warning--I didn't find a database entry for "spotifyApi"
 Warning--I didn't find a database entry for "stackexchange"
 You've used 1 entry,
             1935 wiz_defined-function locations,
-            480 strings with 4164 characters,
+            482 strings with 4184 characters,
 and the built_in function-call counts, 756 in all, are:
 = -- 63
 > -- 68
@@ -45,4 +46,4 @@ warning$ -- 0
 while$ -- 4
 width$ -- 0
 write$ -- 15
-(There was 1 warning)
+(There were 2 warnings)
