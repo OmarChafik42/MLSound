@@ -67,6 +67,7 @@ popularity prediction of songs in Spotify and Youtube \\
 \maketitle
 
 \section{Introduction}
+
 Throughout history, music has held a profound place in human society, transcending cultural boundaries and serving as a fundamental means of expression and engagement. From ancient tribal rituals to modern-day streaming platforms, music has always captivated our hearts and souls. It has the unique ability to evoke emotions, connect people, and create shared experiences. 
 
 In today's digital age, the music industry has witnessed (and continues to witness) a deep transformation, where engagement and popularity on digital platforms play a crucial role in an artist's success. With millions of songs available on these platforms, understanding the factors that drive popularity and listeners' willingness to engage with a song is of great interest to artists, record labels, and other stakeholders in the music industry.
@@ -118,7 +119,7 @@ The ground set of data for this project was obtained from a pre-built dataset av
 	\label{tab:attributes}
 \end{table}
 
-Some of these features refer to specific terminology used in the music industry to describe characteristics of a song. The following list\cite{spotifyApi} provides a brief explanation of these terms:
+Some of these features refer to specific terminology used in the music industry to describe characteristics of a song. The following list \cite{spotifyApi} provides a brief explanation of these terms:
 
 \begin{itemize}
 	\item \textit{Danceability}: describes how suitable a track is for dancing based on a combination of musical elements including tempo, rhythm stability, beat strength, and overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.
@@ -132,6 +133,43 @@ Some of these features refer to specific terminology used in the music industry 
 	\item \textit{Valence}: a measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry).
 	\item \textit{Tempo}: the overall estimated tempo of a track in beats per minute (BPM). In musical terminology, tempo is the speed or pace of a given piece and derives directly from the average beat duration.
 \end{itemize}
+
+Disclaimer: data was collected in February 2023, so it may not be up to date
+
+\begin{figure}
+	\centering
+	\includegraphics[width=.8\linewidth]{numeric_variables_histograms.png}
+	\caption{Histograms of main numerical attributes}\label{fig:numeric_variables_histograms}
+\end{figure}
+
+Write something interesting about the likes and views and how they will be used to create the target variable.
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{lcc}
+        \toprule
+        Attribute & Likes & Views \\
+        \midrule
+		Count & 20177.0 & 20177.0 \\
+		Mean & $6.633\times10^5$ & $9.418\times10^7$ \\
+		Std & $1.789\times10^6$ & $2.750\times10^8$ \\
+		Min & 0.0 & 0.0 \\
+		25\% & 21581.0 & 1835998.0 \\
+		50\% & 124481.0 & 14542507.0 \\
+		75\% & 522148.0 & 70572997.0 \\
+		Max & $5.078\times10^7$ & $8.079\times10^9$ \\
+        \bottomrule
+    \end{tabular}
+    \caption{Basic Statistics for Likes and Views}
+    \label{tab:stats}
+\end{table}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=.8\linewidth]{rug_plots_views_likes.png}
+	\caption{Distribution of likes and views}\label{fig:rug_plots_views_likes}
+\end{figure}
+
 
 \section{Method}
 
