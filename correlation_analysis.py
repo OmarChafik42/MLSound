@@ -26,5 +26,8 @@ for i in range(len(corr_matrix.columns)):
             features_to_remove.add(corr_matrix.columns[i])
             features_to_remove.add(corr_matrix.columns[j])
 
+# Save the plot to an image file
+plt.savefig('correlation_matrix.png')
+
 # Print the list of features to remove
 print("Features to remove:", list(features_to_remove))
