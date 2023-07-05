@@ -300,6 +300,8 @@ The parameter k, which represents the number of neighbors considered for classif
 	\caption{KNN model performance across different k values}\label{fig:knn_k_selection}
 \end{figure}
 
+\newblock
+
 The SVG model, unfortunately, did not yield improved results compared to the KNN model. The classification report for the SVG model is as follows:
 
 \begin{table}[H]
@@ -327,7 +329,7 @@ For the other popularity levels, the SVG model performed reasonably well but sti
 
 Overall, the accuracy of the SVG model was the same as the KNN model, indicating that both models correctly predicted approximately 47\% of instances in the test set.
 
-
+\newblock
 
 The random forest model yielded an accuracy of 0.532, indicating that it correctly predicted approximately 53.2\% of the instances in the test set and positioning as the best performer of the models.
 
@@ -352,6 +354,8 @@ The random forest model yielded an accuracy of 0.532, indicating that it correct
 
 The model exhibited varying levels of performance across different popularity categories. While it showed relatively good precision and recall for the "Low Popularity" and "Moderate Popularity" categories, it still struggled with the "High Popularity" and "Very High Popularity" categories.
 
+\newblock
+
 Under the possibility that our single train-test split was not representative of the whole dataset, we decided to perform a cross-validation report to further measure the models' performance. The following table shows the results:
 
 \begin{table}[H]
@@ -373,7 +377,19 @@ By averaging the performance metrics obtained from each fold, we get a more reli
 
 The results show that the Random Forest model achieved the highest cross-validation accuracy, followed by the SVG model and the KNN model. This is consistent with the results obtained from the single train-test split, where the Random Forest model also achieved the highest accuracy slightly above random guessing.
 
+\newblock
 
+Discussion:
+
+The classification of popularity based solely on sound features can be a challenging task, as evidenced by the performance of the implemented models. Several reasons contribute to this challenge.
+
+Firstly, popularity is inherently subjective, varying among individuals. It is influenced by personal preferences, cultural context, and social trends. Sound features alone may not fully capture these subjective aspects that contribute to the perception of popularity. Different listeners may have diverse interpretations of what makes a song popular, leading to inconsistencies in the classification results.
+
+Secondly, the concept of popularity is complex and multifaceted. It is influenced by various factors, including melody, lyrics, rhythm, production quality, and artist popularity. These factors interact in intricate ways, making it challenging to capture their relationships solely based on sound features. The models implemented in this study might not have adequately captured the intricate patterns and interplay of these factors, resulting in suboptimal classification performance.
+
+Moreover, contextual factors play a crucial role in determining the popularity of a song. Marketing strategies, media exposure, and cultural events can significantly impact a song's popularity, even surpassing the influence of sound features. Unfortunately, sound features alone might not encompass these contextual factors, limiting the models' ability to accurately classify popularity.
+
+In conclusion, while machine learning models based on sound features provide valuable insights, they face inherent limitations when it comes to classifying popularity. The subjective nature of popularity, the complexity of its influencing factors, and the influence of contextual factors all contribute to the challenges faced in accurately predicting popularity based solely on sound features. Future research could explore incorporating additional data sources, such as social media trends, user preferences, or external contextual information, to improve the classification performance and provide a more comprehensive understanding of popularity.
 
 \newpage
 
