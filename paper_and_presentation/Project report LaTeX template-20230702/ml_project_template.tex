@@ -236,8 +236,31 @@ This preprocessing step allowed us to create a more refined dataset, focusing on
 
 \section{Method}
 
+In tackling the classification problem, we carefully selected several models to implement and subsequently compare their performance. The chosen models for this task include Support Vector Machine (SVM), Random Forest, and K-Nearest Neighbors (KNN).
 
-\section{Summary}
+Each of these models offers distinct advantages that make them suitable for our problem:
+
+\begin{itemize}
+	\item Support Vector Machine (SVM): SVM is a powerful and versatile classification algorithm known for its ability to handle complex datasets and find optimal decision boundaries. It is particularly effective when dealing with high-dimensional data and can handle both linear and non-linear classification problems. SVM aims to maximize the margin between different classes, thereby promoting robustness and generalizability in the classification process.
+	\item Random Forest: Random Forest is an ensemble learning method that combines multiple decision trees to make predictions. It excels in handling large and diverse datasets while avoiding overfitting. By using bootstrap sampling and feature randomization, Random Forest mitigates the risk of variance and bias, providing robust and accurate predictions. It is particularly useful when dealing with complex relationships and feature interactions.
+	\item K-Nearest Neighbors (KNN): KNN is a non-parametric algorithm that classifies data points based on their proximity to other labeled instances. It is an intuitive and easy-to-understand method that requires no training phase. KNN works well with datasets where instances with similar features tend to have the same label. It is also effective when the decision boundaries are irregular or nonlinear. KNN allows for flexibility in defining the value of K, the number of nearest neighbors considered during classification.
+\end{itemize}
+
+After running all these, we will compare the results and choose the best model to fine-tune it and get the best possible results. However, before running the models, additional preprocessing steps were performed. For categorical variables, encoding techniques were applied. The target variable was encoded using label encoding, while the remaining categorical variables were encoded using one-hot encoding.
+
+Label encoding was chosen for the target variable as it is a categorical variable with ordinal levels. Label encoding assigns a unique numerical label to each category, thereby preserving the ordinal relationship between the categories. This encoding allows the classification models to interpret the target variable correctly during training and prediction.
+
+On the other hand, one-hot encoding was used for the remaining categorical variables. One-hot encoding creates binary dummy variables for each category, representing the presence or absence of that category in a given observation. This encoding scheme is suitable for non-ordinal categorical variables as it prevents the models from assigning any arbitrary ordinal relationship among the categories.
+
+Regarding the numerical values, a normalization technique was applied specifically for the KNN model. Normalization ensures that all numerical features have a similar scale, which is crucial for distance-based algorithms like KNN. By scaling the numerical values to a standard range (e.g., between 0 and 1), the KNN algorithm can give equal importance to each feature during classification, preventing features with larger scales from dominating the distance calculations.
+
+Overall, by encoding the categorical variables and applying normalization to the numerical values, the data was prepared appropriately for the selected models. These preprocessing steps aim to enhance the models' performance and ensure they can effectively learn from the data, leading to more accurate predictions of song popularity.
+
+Almost ready to go through the models, the dataset was split into an 80/20 ratio, with 80\% of the data used for training the models and 20\% held out for testing purposes. This serves to evaluate the model's performance on unseen data. The selected ratio 80/20 is meant to strike a balance between having sufficient data for training the models and having a reasonable amount of data for evaluation. With 80\% of the data allocated for training, the models can learn patterns and relationships from a substantial portion of the dataset, allowing them to capture the underlying trends in the data.
+
+The remaining 20\% of the data, reserved for testing, serves as an independent sample to evaluate the models' performance. By assessing the models on unseen data, we can measure their ability to generalize and make accurate predictions on new instances. This helps us estimate how well the models will perform when applied to real-world scenarios or new data points.
+
+\section{Results and conclusion}
 
 \newpage
 
