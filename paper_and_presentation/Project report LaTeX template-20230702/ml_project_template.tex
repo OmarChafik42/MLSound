@@ -58,7 +58,7 @@
 
 %%% The "real" document content comes below...
 \title{Project report on\\
-popularity prediction of songs in Spotify and Youtube \\
+song popularity classification \\
 }
 \author{Omar Chafik, Santiago Lema}
 \date{\today}
@@ -262,8 +262,120 @@ The remaining 20\% of the data, reserved for testing, serves as an independent s
 
 \section{Results and conclusion}
 
-\newpage
+The KNN model was evaluated using various performance metrics provided by the Python library \textit{Sklearn}. The results are presented in the following table:
 
+\begin{table}[H]
+	\centering
+	\begin{tabular}{lcccc}
+		\toprule
+		\textbf{Popularity Level} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+		\midrule
+		High Popularity           & 0.35               & 0.08            & 0.13              & 796              \\
+		Low Popularity            & 0.57               & 0.51            & 0.53              & 1086             \\
+		Moderate Popularity       & 0.44               & 0.75            & 0.56              & 1551             \\
+		Very High Popularity      & 0.09               & 0.00            & 0.01              & 401              \\
+		\hline
+		Accuracy                  & -                  & -               & 0.47              & 3834             \\
+		Macro Avg                 & 0.36               & 0.34            & 0.31              & 3834             \\
+		Weighted Avg              & 0.42               & 0.47            & 0.40              & 3834             \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+The precision metric measures the proportion of correctly predicted instances for each popularity level. Recall represents the percentage of instances correctly classified for a particular popularity level out of all instances belonging to that level. The F1-score combines both precision and recall, providing a balanced measure of the model's performance.
+
+From the results, it can be observed that the KNN model achieved a relatively low precision for High Popularity and Very High Popularity levels, indicating that it struggled to accurately classify instances belonging to these categories. The recall for Very High Popularity was particularly worse, suggesting that the model failed drastically in identifying instances of the most popular songs.
+
+On the other hand, the model performed relatively well in terms of precision and recall for Low Popularity and Moderate Popularity levels. These categories had higher F1-scores, indicating a better balance between precision and recall.
+
+The overall accuracy of the KNN model was 0.47, indicating that it correctly classified approximately 47\% of the instances in the test set. The macro-average F1-score, which calculates the average F1-score across all popularity levels, was 0.31. The weighted average F1-score, which considers the proportion of instances in each popularity level, was 0.40.
+
+These results reveal some limitations of the KNN model in predicting song popularity based on the given dataset, and particularly for the categories we are most interested in: instances belonging to the High Popularity and Very High Popularity songs.
+
+The parameter k, which represents the number of neighbors considered for classification in the KNN model, was selected by evaluating the model's performance across a range of values from 1 to 100. The k value that yielded the best performance was chosen as the optimal parameter for the final model. This process ensures that the model is tuned to the dataset and maximizes its predictive capabilities by considering an appropriate number of nearest neighbors for classification.
+
+\begin{figure}{H}
+	\centering
+	\includegraphics[width=.8\linewidth]{performance_different_k_values.png}
+	\caption{KNN model performance across different k values}\label{fig:knn_k_selection}
+\end{figure}
+
+The SVG model, unfortunately, did not yield improved results compared to the KNN model. The classification report for the SVG model is as follows:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{lcccc}
+		\toprule
+		\textbf{Popularity Level} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+		\midrule
+		\hline
+		High Popularity           & 0.86               & 0.01            & 0.01              & 796              \\
+		Low Popularity            & 0.59               & 0.49            & 0.53              & 1086             \\
+		Moderate Popularity       & 0.43               & 0.82            & 0.57              & 1551             \\
+		Very High Popularity      & 1.00               & 0.00            & 0.00              & 401              \\
+		\hline
+		Accuracy                  & -                  & -               & 0.47              & 3834             \\
+		Macro Avg                 & 0.72               & 0.33            & 0.28              & 3834             \\
+		Weighted Avg              & 0.63               & 0.47            & 0.38              & 3834             \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+The SVG model did not show better results compared to the KNN model. It struggled particularly with instances labeled as "Very High Popularity," as indicated by the precision of 1.0 and recall of 0.0 for this category. This means that while the model correctly predicted all instances it labeled as "Very High Popularity," it missed identifying any instances that actually belonged to this category. This could be due to the scarcity of instances labeled as "Very High Popularity" in the dataset, making it challenging for the model to learn and generalize patterns effectively.
+
+For the other popularity levels, the SVG model performed reasonably well but still had room for improvement. It showed higher precision and recall for the "Moderate Popularity" category compared to the "High Popularity" and "Very High Popularity" categories. This indicates that the model was better at correctly classifying instances in the "Moderate Popularity" range. However, it still exhibited some misclassifications and struggled to achieve high precision and recall for the "High Popularity" category.
+
+Overall, the accuracy of the SVG model was the same as the KNN model, indicating that both models correctly predicted approximately 47\% of instances in the test set.
+
+
+
+The random forest model yielded an accuracy of 0.532, indicating that it correctly predicted approximately 53.2\% of the instances in the test set and positioning as the best performer of the models.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{lcccc}
+		\toprule
+		\textbf{Popularity Level} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+		\midrule
+		\hline
+		High Popularity           & 0.50               & 0.25            & 0.33              & 796              \\
+		Low Popularity            & 0.62               & 0.58            & 0.60              & 1086             \\
+		Moderate Popularity       & 0.49               & 0.72            & 0.58              & 1551             \\
+		Very High Popularity      & 0.65               & 0.23            & 0.34              & 401              \\
+		\hline
+		Accuracy                  & -                  & -               & 0.53              & 3834             \\
+		Macro Avg                 & 0.57               & 0.45            & 0.46              & 3834             \\
+		Weighted Avg              & 0.55               & 0.53            & 0.51              & 3834             \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+The model exhibited varying levels of performance across different popularity categories. While it showed relatively good precision and recall for the "Low Popularity" and "Moderate Popularity" categories, it still struggled with the "High Popularity" and "Very High Popularity" categories.
+
+Under the possibility that our single train-test split was not representative of the whole dataset, we decided to perform a cross-validation report to further measure the models' performance. The following table shows the results:
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{cc}
+	\hline
+	\textbf{Model} & \textbf{Cross-Validation Accuracy} \\
+	\hline
+	KNN & 0.4659885237350026 \\
+	SVG & 0.4807638320022751 \\
+	Random Forest & 0.5136671883150756 \\
+	\hline
+	\end{tabular}
+\end{table}
+
+
+These results provide an assessment of the models' performance using 5-fold cross-validation. The cross-validation accuracy represents the average accuracy obtained across all folds.
+By averaging the performance metrics obtained from each fold, we get a more reliable estimate of the model's performance on unseen data. 
+
+The results show that the Random Forest model achieved the highest cross-validation accuracy, followed by the SVG model and the KNN model. This is consistent with the results obtained from the single train-test split, where the Random Forest model also achieved the highest accuracy slightly above random guessing.
+
+
+
+\newpage
 
 \begin{thebibliography}{9}
 	\bibitem{Rasetri} Rasetri, S. (2020). Spotify and YouTube. Retrieved from \href{https://www.kaggle.com/datasets/salvatorerastelli/spotify-and-youtube}{https://www.kaggle.com/datasets/salvatorerastelli/spotify-and-youtube} (Accessed: July 5, 2023).\\

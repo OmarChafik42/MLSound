@@ -740,6 +740,11 @@ INPUT ./correlation_matrix.png
 INPUT correlation_matrix.png
 INPUT ./correlation_matrix.png
 INPUT ./correlation_matrix.png
+INPUT ./performance_different_k_values.png
+INPUT ./performance_different_k_values.png
+INPUT performance_different_k_values.png
+INPUT ./performance_different_k_values.png
+INPUT ./performance_different_k_values.png
 INPUT ml_project_template.aux
 INPUT ./ml_project_template.out
 INPUT ./ml_project_template.out
