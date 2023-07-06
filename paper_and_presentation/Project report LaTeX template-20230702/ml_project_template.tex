@@ -361,25 +361,78 @@ Under the possibility that our single train-test split was not representative of
 \begin{table}[H]
 	\centering
 	\begin{tabular}{cc}
-	\hline
-	\textbf{Model} & \textbf{Cross-Validation Accuracy} \\
-	\hline
-	KNN & 0.4659885237350026 \\
-	SVG & 0.4807638320022751 \\
-	Random Forest & 0.5136671883150756 \\
-	\hline
+		\hline
+		\textbf{Model} & \textbf{Cross-Validation Accuracy} \\
+		\hline
+		KNN            & 0.4659885237350026                 \\
+		SVG            & 0.4807638320022751                 \\
+		Random Forest  & 0.5136671883150756                 \\
+		\hline
 	\end{tabular}
 \end{table}
 
 
 These results provide an assessment of the models' performance using 5-fold cross-validation. The cross-validation accuracy represents the average accuracy obtained across all folds.
-By averaging the performance metrics obtained from each fold, we get a more reliable estimate of the model's performance on unseen data. 
+By averaging the performance metrics obtained from each fold, we get a more reliable estimate of the model's performance on unseen data.
 
 The results show that the Random Forest model achieved the highest cross-validation accuracy, followed by the SVG model and the KNN model. This is consistent with the results obtained from the single train-test split, where the Random Forest model also achieved the highest accuracy slightly above random guessing.
 
 \newblock
 
+In an endeavor to enhance the classification results, feature engineering techniques were employed. A new feature, termed "Artist Popularity," was created by calculating the average number of likes per artist name. This new variable aimed to provide the models with additional information about artists who already have songs in the dataset. The inclusion of this feature was anticipated to improve the models' performance by incorporating insights into the popularity of artists.
 
+Upon incorporating the "Artist Popularity" variable, positive effects on the classification results were observed. The feature importance of the new feature was calculated to assess its relevance to the classification model. The feature importance provides insights into the contribution of each feature in the classification process. In this case it was calculated using the Gini impurity method.
+
+The Gini impurity or mean decrease impurity method measures the reduction in impurity achieved by utilizing a particular feature to split the data at each node of the decision trees within the Random Forest ensemble. By considering the impact of each feature on reducing impurity during the splitting process, the relative importance of the features can be determined.
+
+To calculate feature importances, the impurity-based importances are averaged across all trees in the Random Forest. This averaging process provides an overall assessment of the importance of each feature, with higher values indicating greater relevance or importance in the classification task.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{feature_importance.png}
+	\caption{Feature importance for Random Forest}\label{fig:feature_importance}
+\end{figure}
+
+By examining the feature importances, it was observed that the "Artist Popularity" feature exhibited relatively higher importance compared to the other features used in the model. This indicates that the "Artist Popularity" feature contributes significantly to the classification of song popularity and provides valuable information for the model to make accurate predictions.
+
+\newblock
+
+Still in the endeavor to enhance the classification results, threshold-based feature selection was performed, where a range of threshold values was defined to select features based on their importance. By iteratively adjusting the threshold, the most influential features were identified and included in the model.
+
+To implement the feature selection process, a mask was created to select only the features with importance greater than or equal to the threshold value. This allowed for a more focused model that leveraged the most relevant features in predicting song popularity. By considering only the important features, the model was able to reduce noise and potentially improve its ability to capture the underlying patterns and relationships within the data.
+
+Hyperparameter tuning was another crucial step in enhancing the model's performance. A parameter grid was defined to explore different combinations of hyperparameters, such as "n\_estimators" and "max\_depth", which were specific to the Random Forest algorithm.
+
+GridSearchCV, a technique for hyperparameter optimization, was employed to perform a systematic search across the parameter grid using only the selected features. This process aimed to find the best combination of hyperparameters that maximized the model's performance.
+
+Once the best parameters were determined through the grid search, a new Random Forest model, rf\_classifier, was created using these optimized parameters. This ensured that the model was configured with the most suitable settings for the given dataset and task.
+
+The model was then retrained using only the selected features, allowing it to focus on the most informative aspects of the data. The retrained model was subsequently used to predict the target variable on the test set, generating the predicted values, y\_pred. By using the selected features and the optimized parameters, the model aimed to provide more accurate predictions of song popularity.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{lcccc}
+		\toprule
+		\textbf{Popularity Level} & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+		\midrule
+		\hline
+		0                         & 0.51               & 0.38            & 0.43              & 806              \\
+		1                         & 0.63               & 0.65            & 0.64              & 1116             \\
+		2                         & 0.57               & 0.65            & 0.61              & 1612             \\
+		3                         & 0.66               & 0.58            & 0.62              & 376              \\
+		\hline
+		Accuracy                  & -                  & -               & 0.59              & 3910             \\
+		Macro Avg                 & 0.59               & 0.57            & 0.58              & 3910             \\
+		Weighted Avg              & 0.58               & 0.59            & 0.58              & 3910             \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+Now the Random Forest model performed better compared to the previous Random Forest model. It achieved an overall accuracy of 0.59, correctly predicting 59a\% of the instances in the test set. The precision, recall, and F1-scores for each popularity level were generally higher compared to the previous Random Forest results.
+
+Although these values are better than the previous, and definitely better than random guessing, they do not provide confidence about the classification result. 
+
+\newblock
 
 Discussion:
 
