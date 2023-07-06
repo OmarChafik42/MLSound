@@ -5,6 +5,12 @@ import matplotlib.pyplot as plt
 # Load your dataset into a pandas DataFrame
 df = pd.read_csv('source_dataset/Spotify_Youtube.csv')
 
+# Calculate average number of likes for each artist
+artist_popularity = df.groupby('Artist')['Likes'].mean()
+
+# Map artist popularity to each row in the DataFrame
+df['Artist_Popularity'] = df['Artist'].map(artist_popularity)
+
 # Calculate the correlation matrix
 corr_matrix = df.corr()
 

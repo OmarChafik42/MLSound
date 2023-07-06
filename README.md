@@ -1,5 +1,12 @@
 # MLSound
-MLSound is a machine learning project that predicts song popularity using Spotify and YouTube datasets.
+MLSound is primarily a machine learning project focused on multiclass classification of song popularity using Spotify and YouTube datasets. 
+
+Additionally, it includes a side project for binary classification of song mood.
+
+
+
+
+
 
 
 
