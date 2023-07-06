@@ -292,17 +292,17 @@ The overall accuracy of the KNN model was 0.47, indicating that it correctly cla
 
 These results reveal some limitations of the KNN model in predicting song popularity based on the given dataset, and particularly for the categories we are most interested in: instances belonging to the High Popularity and Very High Popularity songs.
 
-The parameter k, which represents the number of neighbors considered for classification in the KNN model, was selected by evaluating the model's performance across a range of values from 1 to 100. The k value that yielded the best performance was chosen as the optimal parameter for the final model. This process ensures that the model is tuned to the dataset and maximizes its predictive capabilities by considering an appropriate number of nearest neighbors for classification.
-
-\begin{figure}{H}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\linewidth]{performance_different_k_values.png}
 	\caption{KNN model performance across different k values}\label{fig:knn_k_selection}
 \end{figure}
 
-\newblock
+The parameter k, which represents the number of neighbors considered for classification in the KNN model, was selected by evaluating the model's performance across a range of values from 1 to 100. The k value that yielded the best performance was chosen as the optimal parameter for the final model. This process ensures that the model is tuned to the dataset and maximizes its predictive capabilities by considering an appropriate number of nearest neighbors for classification.
 
 The SVG model, unfortunately, did not yield improved results compared to the KNN model. The classification report for the SVG model is as follows:
+
+\newblock
 
 \begin{table}[H]
 	\centering
