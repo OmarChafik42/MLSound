@@ -11,25 +11,18 @@ scaler = MinMaxScaler()
 numerical_features = ['Danceability', 'Energy', 'Key', 'Loudness', 'Speechiness', 'Acousticness', 'Instrumentalness', 'Liveness', 'Valence', 'Tempo', 'Duration_ms', 'Views', 'Likes', 'Comments']
 df[numerical_features] = scaler.fit_transform(df[numerical_features])
 
-# Calculate average number of likes for each artist
-artist_popularity = df.groupby('Artist')['Likes'].mean()
 
-# Map artist popularity to each row in the DataFrame
-df['Artist_Popularity'] = df['Artist'].map(artist_popularity)
-
-# Create a new feature by multiplying the values of the Danceability and Energy columns
-df['Danceability_Energy'] = df['Danceability'] * df['Energy']
 
 # Calculate the correlation matrix
 corr_matrix = df.corr()
 
-# Plot the correlation matrix as a heatmap
 plt.figure(figsize=(10, 8))
-sns.heatmap(corr_matrix, cmap='coolwarm', annot=True, fmt=".2f", linewidths=0.5)
+sns.heatmap(corr_matrix, cmap='gray', annot=True, fmt=".2f", linewidths=0.5, cbar=False)
 plt.title('Correlation Matrix')
 plt.xticks(rotation=45)
 plt.yticks(rotation=0)
 plt.show()
+
 
 # Identify pairs of highly correlated features
 threshold = 0.8
